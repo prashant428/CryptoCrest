@@ -17,6 +17,11 @@ export class CreateSurveyComponent implements OnInit {
     new TodoItem("Collect tickets", "","6"),
   ]);
 
+  IsForUpdate: boolean = false;  
+  IsForAdd: boolean = true;  
+  model:any={};
+  msg:any="";
+
   get username(): string {
     return this.list.user;
   }  
@@ -33,6 +38,22 @@ export class CreateSurveyComponent implements OnInit {
     if(newItem != ""){
       this.list.addItem(newItem, newDes, questions);
     }
+  }
+
+  myValue: any;
+  editItem(i: number, newItem: string, newDes: string, questions: string){
+    this.IsForUpdate = true;
+    this.IsForAdd = false;
+    this.model.name = newItem;
+    this.model.description =newDes;
+    this.model.questions = questions;
+    this.myValue = i
+
+  }
+  updateItem(newItem: string, newDes: string, questions: string){
+    this.list.update(this.myValue, newItem, newDes, questions)
+    this.IsForUpdate = false;
+
   }
 
   deleteItem(i: number){

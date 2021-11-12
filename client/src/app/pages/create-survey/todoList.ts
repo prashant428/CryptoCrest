@@ -20,5 +20,10 @@ export class TodoList {
         this.todoItems.splice(i, 1)
     }
 
+    update( i: number, task: string, description: string, questions: string)
+    {
+        this.todoItems.splice(i,1,new TodoItem(task, description, questions))
+    }
+
     
 }
